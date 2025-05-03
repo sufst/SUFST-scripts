@@ -36,8 +36,9 @@ release_dir="$2"
 mkdir -p "$tmp_dir"
 cd "$tmp_dir"
 
-# generate gerbers
+# generate gerbers and drill files
 kicad-cli pcb export gerbers "../$pcb" || die
+kicad-cli pcb export drill "../$pcb" || die
 zip -r Fabrication.zip ./* || die
 mv Fabrication.zip "../$release_dir"
 
